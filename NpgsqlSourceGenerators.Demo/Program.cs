@@ -1,13 +1,11 @@
-﻿using NpgSqlEnumGenerators;
+﻿using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using NpgSqlGenerators;
 
-// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
-[PostgresEnum]
-enum Directions
-{
-	North,
-	West,
-	South,
-	East
-}
+var dataSourceBuilder = new NpgsqlDataSourceBuilder();
+dataSourceBuilder.MapPostgresEnums();
+
+var modelBuilder = new ModelBuilder();
+modelBuilder.RegisterPostgresEnums();

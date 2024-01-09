@@ -1,18 +1,12 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
 namespace NpgSqlSourceGenerator;
 
-/// <summary>
-/// A sample source generator that creates a custom report based on class properties. The target class should be annotated with the 'Generators.ReportAttribute' attribute.
-/// When using the source code as a baseline, an incremental source generator is preferable because it reduces the performance overhead.
-/// </summary>
 [Generator]
 public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 {
@@ -31,6 +25,8 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 	    }
 	    """;
 
+	private record struct EnumData(string Name, string Namespace, bool IsGlobalNamespace);
+
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		// Add the marker attribute to the compilation.
@@ -41,7 +37,7 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 		var p = context.SyntaxProvider.ForAttributeWithMetadataName(
 			 $"{Namespace}.{AttributeName}",
 			 (sn, _) => sn is EnumDeclarationSyntax,
-			 (gasc, _) => (Namespace: gasc.TargetSymbol.ContainingNamespace.ToDisplayString(), gasc.TargetSymbol.Name)
+			 (gasc, _) => new EnumData(gasc.TargetSymbol.Name, gasc.TargetSymbol.ContainingNamespace.ToDisplayString(), gasc.TargetSymbol.ContainingNamespace.IsGlobalNamespace)
 		);
 
 		// Generate the source code.
@@ -51,11 +47,11 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 
 	/// <summary>
 	/// Generate code action.
-	/// It will be executed on specific nodes (ClassDeclarationSyntax annotated with the [Report] attribute) changed by the user.
+	/// It will be executed on specific nodes (EnumDeclarationSyntax annotated with the [PostgresEnum] attribute) changed by the user.
 	/// </summary>
 	/// <param name="context">Source generation context used to add source files.</param>
-	/// <param name="enumDeclarations">Nodes annotated with the [Report] attribute that trigger the generate action.</param>
-	private static void GenerateCode(SourceProductionContext context, ImmutableArray<(string Namespace, string Name)> enumDeclarations)
+	/// <param name="enumDeclarations">Nodes annotated with the [PostgresEnum] attribute that trigger the generate action.</param>
+	private static void GenerateCode(SourceProductionContext context, ImmutableArray<EnumData> enumDeclarations)
 	{
 
 		var code = $$"""
@@ -70,17 +66,41 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 		    {
 		        public static NpgsqlDataSourceBuilder MapPostgresEnums(this NpgsqlDataSourceBuilder builder)
 		        {
-		            {{string.Join("\n    ", enumDeclarations.Select(m => $"builder.MapEnum<{m.Namespace}.{m.Name}>();"))}}
+		            {{string.Join("\n", enumDeclarations.Select(m => BuildMapEnum(m, 8)))}}
 		            return builder;
 		        }
 
 		        public static void RegisterPostgresEnums(this ModelBuilder builder)
 		        {
-		            {{string.Join("\n    ", enumDeclarations.Select(m => $"builder.HasPostgresEnum<{m.Namespace}.{m.Name}>();"))}}
+		            {{string.Join("\n", enumDeclarations.Select(m => BuildHasEnum(m, 8)))}}
 		        }
 		    }
 		    """;
-		
+
 		context.AddSource("PostgresEnumHelpers.g.cs", SourceText.From(code, Encoding.UTF8));
+	}
+
+	private static string BuildMapEnum(EnumData model, int indent)
+	{
+		var sb = new StringBuilder();
+		sb.Append(' ', indent);
+		sb.Append("builder.MapEnum<");
+		sb.Append(model.IsGlobalNamespace 
+			? $"global::{model.Name}"
+			: $"{model.Namespace}.{model.Name}");
+		sb.Append(">();");
+		return sb.ToString();
+	}
+
+	private static string BuildHasEnum(EnumData model, int indent)
+	{
+		var sb = new StringBuilder();
+		sb.Append(' ', indent);
+		sb.Append("builder.HasPostgresEnum<");
+		sb.Append(model.IsGlobalNamespace
+			? $"global::{model.Name}"
+			: $"{model.Namespace}.{model.Name}");
+		sb.Append(">();");
+		return sb.ToString();
 	}
 }

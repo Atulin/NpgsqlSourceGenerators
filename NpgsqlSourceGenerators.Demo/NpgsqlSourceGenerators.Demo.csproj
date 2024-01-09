@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NpgSqlSourceGenerator\NpgSqlSourceGenerator.csproj" Version="1.0.0-*" />
+    <ProjectReference Include="..\NpgSqlSourceGenerator\NpgSqlSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>
