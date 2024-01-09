@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpgSqlSourceGenerator", "NpgSqlSourceGenerator\NpgSqlSourceGenerator.csproj", "{8F36C0AA-DD85-46FC-8E5F-8F47E24459E0}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NpgSqlSourceGenerator", "NpgSqlSourceGenerator\NpgSqlSourceGenerator.csproj", "{8F36C0AA-DD85-46FC-8E5F-8F47E24459E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpgsqlSourceGenerators.Tests", "NpgsqlSourceGenerators.Tests\NpgsqlSourceGenerators.Tests.csproj", "{ADB966B7-662D-42DF-B9B0-4C3A64C96B08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NpgsqlSourceGenerators.Tests", "NpgsqlSourceGenerators.Tests\NpgsqlSourceGenerators.Tests.csproj", "{ADB966B7-662D-42DF-B9B0-4C3A64C96B08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpgsqlSourceGenerators.Demo", "NpgsqlSourceGenerators.Demo\NpgsqlSourceGenerators.Demo.csproj", "{355631DD-6248-48E9-A210-645CBCA1C22F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,15 @@ Global
 		{ADB966B7-662D-42DF-B9B0-4C3A64C96B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADB966B7-662D-42DF-B9B0-4C3A64C96B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADB966B7-662D-42DF-B9B0-4C3A64C96B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355631DD-6248-48E9-A210-645CBCA1C22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355631DD-6248-48E9-A210-645CBCA1C22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355631DD-6248-48E9-A210-645CBCA1C22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355631DD-6248-48E9-A210-645CBCA1C22F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3ADAAA4-9881-4AB3-8FE4-93F316C29AE6}
 	EndGlobalSection
 EndGlobal
