@@ -25,7 +25,7 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 	    }
 	    """;
 
-	private record struct EnumData(string Name, string Namespace, bool IsGlobalNamespace);
+	private record struct EnumData(string Name, string Namespace, bool IsGlobalNamespace, string? PgName);
 
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
@@ -37,7 +37,12 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 		var p = context.SyntaxProvider.ForAttributeWithMetadataName(
 			 $"{Namespace}.{AttributeName}",
 			 (sn, _) => sn is EnumDeclarationSyntax,
-			 (gasc, _) => new EnumData(gasc.TargetSymbol.Name, gasc.TargetSymbol.ContainingNamespace.ToDisplayString(), gasc.TargetSymbol.ContainingNamespace.IsGlobalNamespace)
+			 (gasc, _) => new EnumData(
+				 gasc.TargetSymbol.Name,
+				 gasc.TargetSymbol.ContainingNamespace.ToDisplayString(),
+				 gasc.TargetSymbol.ContainingNamespace.IsGlobalNamespace,
+				 gasc.Attributes[0].NamedArguments.FirstOrDefault(kv => kv.Key == "Name").Value.Value as string
+			)
 		);
 
 		// Generate the source code.
@@ -66,13 +71,13 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 		    {
 		        public static NpgsqlDataSourceBuilder MapPostgresEnums(this NpgsqlDataSourceBuilder builder)
 		        {
-		            {{string.Join("\n", enumDeclarations.Select(m => BuildMapEnum(m, 8)))}}
+		    {{string.Join("\n", enumDeclarations.Select(m => BuildMapEnum(m, 8)))}}
 		            return builder;
 		        }
 
 		        public static void RegisterPostgresEnums(this ModelBuilder builder)
 		        {
-		            {{string.Join("\n", enumDeclarations.Select(m => BuildHasEnum(m, 8)))}}
+		    {{string.Join("\n", enumDeclarations.Select(m => BuildHasEnum(m, 8)))}}
 		        }
 		    }
 		    """;
@@ -82,25 +87,25 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
 
 	private static string BuildMapEnum(EnumData model, int indent)
 	{
-		var sb = new StringBuilder();
-		sb.Append(' ', indent);
-		sb.Append("builder.MapEnum<");
-		sb.Append(model.IsGlobalNamespace 
+		var ns = model.IsGlobalNamespace
 			? $"global::{model.Name}"
-			: $"{model.Namespace}.{model.Name}");
-		sb.Append(">();");
+			: $"{model.Namespace}.{model.Name}";
+
+		var sb = new StringBuilder()
+			.Append(' ', indent)
+			.Append("builder.MapEnum<").Append(ns).Append(">(").Append(model.PgName is { } pn ? $"pgName: \"{pn}\"" : null).Append(");");
 		return sb.ToString();
 	}
 
 	private static string BuildHasEnum(EnumData model, int indent)
 	{
-		var sb = new StringBuilder();
-		sb.Append(' ', indent);
-		sb.Append("builder.HasPostgresEnum<");
-		sb.Append(model.IsGlobalNamespace
+		var ns = model.IsGlobalNamespace
 			? $"global::{model.Name}"
-			: $"{model.Namespace}.{model.Name}");
-		sb.Append(">();");
+			: $"{model.Namespace}.{model.Name}";
+
+		var sb = new StringBuilder()
+			.Append(' ', indent)
+			.Append("builder.HasPostgresEnum<").Append(ns).Append(">(").Append(model.PgName is { } pn ? $"name: \"{pn}\"" : null).Append(");");
 		return sb.ToString();
 	}
 }
