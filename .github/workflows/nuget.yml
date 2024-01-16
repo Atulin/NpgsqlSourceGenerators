@@ -20,7 +20,7 @@ jobs:
         uses: kzrnm/get-net-sdk-project-versions-action@v1
         id: get-version
         with:
-          proj-path: NpgsqlSourceGenerators/NpgsqlSourceGenerators.csproj
+          proj-path: NpgsqlSourceGenerator/NpgsqlSourceGenerator.csproj
       - name: Push
-        run: dotnet nuget push Atulin.NpgsqlSourceGenerators.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push Atulin.NpgsqlSourceGenerator.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
         
