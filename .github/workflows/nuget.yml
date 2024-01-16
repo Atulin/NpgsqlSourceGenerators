@@ -15,12 +15,12 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
       - name: Pack
-        run: dotnet pack --configuration Release --no-build --output .
+        run: dotnet pack --configuration Release --no-build --output ./artifacts
       - name: Get version
         uses: kzrnm/get-net-sdk-project-versions-action@v1
         id: get-version
         with:
           proj-path: NpgSqlSourceGenerator/NpgSqlSourceGenerator.csproj
       - name: Push
-        run: dotnet nuget push Atulin.NpgSqlSourceGenerator.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push ./artifacts/Atulin.NpgSqlSourceGenerator.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
         
