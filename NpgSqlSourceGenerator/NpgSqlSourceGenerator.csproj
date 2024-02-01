@@ -9,7 +9,7 @@
         <IsRoslynComponent>true</IsRoslynComponent>
 
         <RootNamespace>NpgSqlSourceGenerator</RootNamespace>
-        <PackageId>NpgSqlSourceGenerator</PackageId>
+        <PackageId>Atulin.NpgSqlSourceGenerator</PackageId>
         
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeBuildOutput>false</IncludeBuildOutput>
