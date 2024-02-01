@@ -15,15 +15,16 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <PackageOutputPath>$(SolutionDir)artifacts</PackageOutputPath>
         
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Title>NpgSqlSourceGenerator</Title>
         <Authors>Atulin</Authors>
         <PackageProjectUrl>https://github.com/Atulin/NpgsqlSourceGenerators</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageLicenseUrl>https://raw.githubusercontent.com/Atulin/NpgsqlSourceGenerators/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/Atulin/NpgsqlSourceGenerators</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>epub</PackageTags>
+        <PackageTags>npgsql postgresql pg efcore entity-framework-core source-generator enum</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

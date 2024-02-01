@@ -1,4 +1,4 @@
-![NuGet Version](https://img.shields.io/nuget/v/Atulin.NpgsqlSourceGenerators?style=for-the-badge)
+[![NuGet Version](https://img.shields.io/nuget/v/Atulin.NpgsqlSourceGenerator?style=for-the-badge)](https://www.nuget.org/packages/Atulin.NpgSqlSourceGenerator/)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Atulin.NpgsqlSourceGenerator?style=for-the-badge)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Atulin/NpgsqlSourceGenerators/nuget.yml?style=for-the-badge)
 
