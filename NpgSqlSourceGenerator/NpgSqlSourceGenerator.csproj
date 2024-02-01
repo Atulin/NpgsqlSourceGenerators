@@ -9,16 +9,26 @@
         <IsRoslynComponent>true</IsRoslynComponent>
 
         <RootNamespace>NpgSqlSourceGenerator</RootNamespace>
-        <PackageId>Atulin.NpgsqlSourceGenerator</PackageId>
+        <PackageId>NpgSqlSourceGenerator</PackageId>
         
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <PackageOutputPath>$(SolutionDir)artifacts</PackageOutputPath>
-        <Version>1.0.0</Version>
+        
+        <Version>1.0.1</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Title>NpgSqlSourceGenerator</Title>
+        <Authors>Atulin</Authors>
+        <PackageProjectUrl>https://github.com/Atulin/NpgsqlSourceGenerators</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/Atulin/NpgsqlSourceGenerators/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/Atulin/NpgsqlSourceGenerators</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>epub</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <None Include="../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
     
     <ItemGroup>

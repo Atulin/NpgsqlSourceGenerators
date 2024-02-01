@@ -22,5 +22,5 @@ jobs:
         with:
           proj-path: NpgSqlSourceGenerator/NpgSqlSourceGenerator.csproj
       - name: Push
-        run: dotnet nuget push ./artifacts/Atulin.NpgSqlSourceGenerator.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push ./artifacts/Atulin.NpgSqlSourceGenerator.${{steps.get-version.outputs.package-version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }} --skip-duplicate
         

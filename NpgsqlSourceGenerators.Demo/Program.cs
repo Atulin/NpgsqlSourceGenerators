@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using NpgSqlGenerators;
-using NpgsqlSourceGenerators.Demo;
 
 Console.WriteLine("Hello, World!");
 
