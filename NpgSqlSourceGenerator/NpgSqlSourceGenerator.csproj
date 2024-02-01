@@ -20,8 +20,7 @@
         <Title>NpgSqlSourceGenerator</Title>
         <Authors>Atulin</Authors>
         <PackageProjectUrl>https://github.com/Atulin/NpgsqlSourceGenerators</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageLicenseUrl>https://raw.githubusercontent.com/Atulin/NpgsqlSourceGenerators/master/LICENSE</PackageLicenseUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <RepositoryUrl>https://github.com/Atulin/NpgsqlSourceGenerators</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>npgsql postgresql pg efcore entity-framework-core source-generator enum</PackageTags>
@@ -29,7 +28,8 @@
 
     <ItemGroup>
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-        <None Include="../README.md" Pack="true" PackagePath="\"/>
+        <None Include="../README.md" Pack="true" Visible="false" PackagePath="\"/>
+        <None Include="../LICENSE" Pack="true" Visible="false" PackagePath="\"/>
     </ItemGroup>
     
     <ItemGroup>
