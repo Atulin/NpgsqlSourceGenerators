@@ -1,6 +1,7 @@
 [![NuGet Version](https://img.shields.io/nuget/v/Atulin.NpgsqlSourceGenerator?style=for-the-badge)](https://www.nuget.org/packages/Atulin.NpgSqlSourceGenerator/)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Atulin.NpgsqlSourceGenerator?style=for-the-badge)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Atulin/NpgsqlSourceGenerators/nuget.yml?style=for-the-badge)
+[![GitHub License](https://img.shields.io/github/license/Atulin/NpgsqlSourceGenerators?style=for-the-badge)](/LICENSE)
 
 # Npgsql Source Generators
 
@@ -66,7 +67,7 @@ which can be used, for example, like so:
 var source = new NpgsqlDataSourceBuilder(connectionString).npgSourceBuilder
     .MapPostgresEnums()
     .Build();
-services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(source));
+services.AddDbContext<MyDbContext>(options => options.UseNpgsql(source));
 ```
 ```cs
 public class MyDbContext : DbContext
