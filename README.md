@@ -1,3 +1,7 @@
+![NuGet Version](https://img.shields.io/nuget/v/Atulin.NpgsqlSourceGenerators?style=for-the-badge)
+![NuGet Downloads](https://img.shields.io/nuget/dt/Atulin.NpgsqlSourceGenerator?style=for-the-badge)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Atulin/NpgsqlSourceGenerators/nuget.yml?style=for-the-badge)
+
 # Npgsql Source Generators
 
 Registering all enums one by one is tedious. Use this.
