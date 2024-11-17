@@ -9,3 +9,19 @@ dataSourceBuilder.MapPostgresEnums();
 
 var modelBuilder = new ModelBuilder();
 modelBuilder.RegisterPostgresEnums();
+
+
+[PostgresEnum(Name = "DoW")]
+public enum DaysOfWeek
+{
+	Monday,	Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+}
+
+[PostgresEnum]
+enum Directions
+{
+	North,
+	West,
+	South,
+	East
+}
