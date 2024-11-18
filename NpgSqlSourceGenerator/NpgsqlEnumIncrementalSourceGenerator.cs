@@ -118,7 +118,7 @@ public class NpgsqlEnumIncrementalSourceGenerator : IIncrementalGenerator
                   }
                   
                   /// <summary>
-                  /// Calls <see cref="Npgsql.NpgsqlDbContextOptionsBuilder.MapEnum{T}"/> on selected enums
+                  /// Calls <see cref="Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.NpgsqlDbContextOptionsBuilder.MapEnum{T}"/> on selected enums
                   /// </summary>
                   public static Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.NpgsqlDbContextOptionsBuilder MapPostgresEnums(this Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.NpgsqlDbContextOptionsBuilder builder)
                   {
