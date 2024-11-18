@@ -17,7 +17,7 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --no-build --output ./artifacts
       - name: Get version
-        uses: kzrnm/get-net-sdk-project-versions-action@v1
+        uses: kzrnm/get-net-sdk-project-versions-action@v2
         id: get-version
         with:
           proj-path: NpgSqlSourceGenerator/NpgSqlSourceGenerator.csproj
