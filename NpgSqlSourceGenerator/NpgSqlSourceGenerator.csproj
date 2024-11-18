@@ -15,7 +15,7 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <PackageOutputPath>$(SolutionDir)artifacts</PackageOutputPath>
         
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Title>NpgSqlSourceGenerator</Title>
         <Authors>Atulin</Authors>
@@ -24,6 +24,7 @@
         <RepositoryUrl>https://github.com/Atulin/NpgsqlSourceGenerators</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>npgsql postgresql pg efcore entity-framework-core source-generator enum</PackageTags>
+        <UserSecretsId>089e7bda-563a-4a1e-bc0c-e52c95c0babf</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -37,8 +38,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
         <PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.4.3">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
